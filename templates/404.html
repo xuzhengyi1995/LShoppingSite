@@ -1,0 +1,27 @@
+{% extends "blank.html" %}
+{% block container %}
+      <style>
+        .error-template {padding: 40px 15px;text-align: center;}
+        .error-actions {margin-top:15px;margin-bottom:15px;}
+        .error-actions .btn { margin-right:10px; }
+      </style>
+      <div class="container">
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="error-template">
+                      <h1>
+                          糟糕！</h1>
+                      <h2>
+                          404错误</h2>
+                      <div class="error-details">
+                          找不到您要查看的页面
+                      </div>
+                      <div class="error-actions">
+                          <a href="/" class="btn btn-primary btn-lg"><span class="fa fa-home"></span>
+                              返回主页</a><a href="/" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span> 联系子健</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+{% end %}

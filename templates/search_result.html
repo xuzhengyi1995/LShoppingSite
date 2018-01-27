@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>商品列表</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </head>
+    <body>
+      <div class="container">
+        <h1>商品列表</h1>
+      </div>
+      <br>
+      <div>
+      <div class="container">
+        <table class="table table-hover" width="100%">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>英文名</th>
+              <th>中文名</th>
+              <th>价格</th>
+              <th width="4%">评价</th>
+              <th width="8%">原链接</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for p in products %}
+            <tr>
+              <th scope="row">{{ p['id'] }}</th>
+              <td>{{ p['name_en'] }}</td>
+              <td>{{ p['name_cn'] }}</td>
+              <td>{{ p['price'] }}</td>
+              <td>{{ p['rate'] }}</td>
+              <td><a href="/product/{{ p['org_website'] }}/{{ p['id'] }}">点击此处</a></td>
+            </tr>
+          {% end %}
+          </tbody>
+        </table>
+      </div>
+    </body>
+</html>

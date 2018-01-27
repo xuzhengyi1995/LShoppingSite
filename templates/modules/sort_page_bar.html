@@ -1,0 +1,93 @@
+<!-- store bottom filter -->
+<div class="store-filter clearfix">
+  <div class="pull-left">
+    <!--
+    <div class="row-filter">
+      <a href="#"><i class="fa fa-th-large"></i></a>
+      <a href="#" class="active"><i class="fa fa-bars"></i></a>
+    </div>
+    -->
+    <div class="sort-filter">
+      <span class="text-uppercase">排序:</span>
+      <select id="sort_{{ updown }}" name="sort" class="input" onchange="window.location.href='/search?keyword={{ url_escape(page['keyword']) }}&sp={{ page['sp'] }}&sort='+this.value+'&page=1'">
+          <option value="0"
+          {% if page['sort']==0 %}
+            selected
+          {% end %}
+          >默认</option>
+          <option value="1"
+          {% if page['sort']==1 %}
+            selected
+          {% end %}
+          >评价</option>
+          <option value="2"
+          {% if page['sort']==2 %}
+            selected
+          {% end %}
+          >价格升</option>
+          <option value="3"
+          {% if page['sort']==3 %}
+            selected
+          {% end %}
+          >价格降</option>
+          <option value="4"
+          {% if page['sort']==4 %}
+            selected
+          {% end %}
+          >销量</option>
+        </select>
+    </div>
+  </div>
+  <div class="pull-right">
+    <div class="page-filter">
+      <span class="text-uppercase">显示:</span>
+      <select id='sp_{{ updown }}' class="input" onchange="window.location.href='/search?keyword={{ url_escape(page['keyword']) }}&sp='+this.value+'&sort={{ page['sort'] }}&page={{ page['page_now'] }}'">
+          <option value="12"
+          {% if page['sp']==12 %}
+            selected
+          {% end %}
+          >12</option>
+          <option value="24"
+          {% if page['sp']==24 %}
+            selected
+          {% end %}
+          >24</option>
+          <option value="48"
+          {% if page['sp']==48 %}
+            selected
+          {% end %}
+          >48</option>
+        </select>
+    </div>
+    <ul class="store-pages">
+      <li><span class="text-uppercase">页码:</span></li>
+      <div class="pull-right">
+      {%if page['page_now'] > 1 %}
+        <li><a href="/search?keyword={{ url_escape(page['keyword']) }}&sp={{ page['sp'] }}&sort={{ page['sort'] }}&page={{ page['page_now']-1 }}"><i class="fa fa-caret-left"></i></a></li>
+      {% end %}
+      {% for i in range(page['page_now']-3,page['page_now']+3) %}
+        {% if i > 0 and i <= page['page_sum'] and i != page['page_now'] %}
+          <li><a href="/search?keyword={{ url_escape(page['keyword']) }}&sp={{ page['sp'] }}&sort={{ page['sort'] }}&page={{ i }}">{{ i }}</a></li>
+        {% end %}
+        {% if i == page['page_now'] %}
+          <li class="active">{{ i }}</li>
+        {% end %}
+      {% end %}
+      {%if page['page_now'] < page['page_sum'] %}
+        <li><a href="/search?keyword={{ url_escape(page['keyword']) }}&sp={{ page['sp'] }}&sort={{ page['sort'] }}&page={{ page['page_now']+1 }}"><i class="fa fa-caret-right"></i></a></li>
+      {% end %}
+    </ul>
+    <div class="page-filter">
+      <select id='page_{{ updown }}' class="input" onchange="window.location.href='/search?keyword={{ url_escape(page['keyword']) }}&sp={{ page['sp'] }}&sort={{ page['sort'] }}&page='+this.value">
+        {% for i in range(1,page['page_sum']+1) %}
+          <option value="{{ i }}"
+          {% if i == page['page_now'] %}
+            selected
+          {% end %}
+          >{{ i }}</option>
+        {% end %}
+      </select>
+    </div>
+  </div>
+</div>
+<!-- /store bottom filter -->
